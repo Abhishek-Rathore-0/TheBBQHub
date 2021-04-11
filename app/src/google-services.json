@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "936987698639",
+    "project_id": "the-bbq-hub-37b41",
+    "storage_bucket": "the-bbq-hub-37b41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936987698639:android:c2277893536a2d56cddeba",
+        "android_client_info": {
+          "package_name": "com.example.thebbqhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "936987698639-0jqfp0bkqg7g5opblrrjmc5kuqapji50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo1oz1Ov8xucdfoivvmr9wch927VSkzTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936987698639-0jqfp0bkqg7g5opblrrjmc5kuqapji50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

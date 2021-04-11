@@ -7,10 +7,10 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/mobile"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter Mobile no"
+        android:hint="Enter Email"
         app:layout_constraintVertical_bias=".18"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintWidth_percent=".8"
@@ -38,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobile"
+        app:layout_constraintTop_toBottomOf="@+id/email"
          />
 
     <Button

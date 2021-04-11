@@ -34,7 +34,10 @@ public class LoginAdapter1 extends FragmentPagerAdapter {
         return fragmentTitle.size();
     }
 
-    public void AddFragment(Fragment fragment,String title){
+
+
+
+    public void AddFragment(Fragment fragment, String title){
         fragmentName.add(fragment);
         fragmentTitle.add(title);
     }
