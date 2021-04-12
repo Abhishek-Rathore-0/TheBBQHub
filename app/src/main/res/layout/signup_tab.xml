@@ -38,12 +38,11 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias= "0.5"
         app:layout_constraintWidth_percent=".8" />
-
     <EditText
-        android:id="@+id/newpass"
+        android:id="@+id/newmobile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter Password"
+        android:hint="Enter mobile no"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -55,14 +54,34 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias= "0.5"
         app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/newpass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newmobile"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias= "0.5"
+        app:layout_constraintWidth_percent=".8" />
     <EditText
         android:id="@+id/newpass1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter Confirm Password"
+        android:hint="Confirm Password"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+
+        android:inputType="textPassword"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

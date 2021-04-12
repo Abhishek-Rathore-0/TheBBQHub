@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,10 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signup_tab extends Fragment {
 
-    EditText email;
-    EditText pass;
-    EditText cpass;
-    EditText name;
+    EditText email,pass,cpass,name,mobile;
     Button btn;
     ProgressBar pg;
     FirebaseAuth fAuth;
@@ -40,6 +39,7 @@ public class signup_tab extends Fragment {
         pass=root.findViewById(R.id.newpass);
         name=root.findViewById(R.id.newname);
         cpass=root.findViewById(R.id.newpass1);
+        mobile=root.findViewById(R.id.newmobile);
         btn=root.findViewById(R.id.Signbtn);
         pg=root.findViewById(R.id.newprogress);
         fAuth= FirebaseAuth.getInstance();
@@ -48,11 +48,11 @@ public class signup_tab extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("message", "userlogin:  1 ");
-                Toast.makeText(getActivity(),"CLidkes Failed to registered!",Toast.LENGTH_LONG).show();
-                String password=pass.getText().toString().trim();
+               String password=pass.getText().toString().trim();
                 String cpassword=cpass.getText().toString().trim();
                 String email1=email.getText().toString().trim();
                 String username=name.getText().toString().trim();
+                String mobileno=mobile.getText().toString().trim();
 
                         if(username.isEmpty()){
                             name.setError("Name is required");
@@ -64,7 +64,11 @@ public class signup_tab extends Fragment {
                             email.requestFocus();
                             return;
                         }
-
+                        if(mobileno.isEmpty()){
+                            mobile.setError("email no is required");
+                            mobile.requestFocus();
+                            return;
+                        }
                         if(!Patterns.EMAIL_ADDRESS.matcher(email1).matches()){
                             email.setError("Please enter a valid Email");
                             email.requestFocus();
@@ -91,8 +95,8 @@ public class signup_tab extends Fragment {
                            @Override
                            public void onComplete(@NonNull Task<AuthResult> task) {
                                if(task.isSuccessful()){
-                                    User user= new User(username,email1);
-                                    FirebaseDatabase.getInstance().getReference("Users")
+                                    User user= new User(username,email1,mobileno);
+                                    FirebaseDatabase.getInstance().getReference("Users_new")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -102,6 +106,11 @@ public class signup_tab extends Fragment {
                                                     Log.d("message", "userlogin: 2 success");
                                                     Toast.makeText(getActivity(),"Sign up successful.",Toast.LENGTH_LONG).show();
                                                     FirebaseAuth.getInstance().signOut();
+                                                    Fragment fragment = new login_tab();
+
+                                                    FragmentManager fragmentManager = getFragmentManager();
+
+                                                    fragmentManager.beginTransaction().replace(R.id.view_page, fragment).commit();
                                                 }
                                                 else{
                                                     pg.setVisibility(View.GONE);
