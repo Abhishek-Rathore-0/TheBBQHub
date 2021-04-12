@@ -100,8 +100,8 @@ public class signup_tab extends Fragment {
                                                 if(task.isSuccessful()){
                                                     pg.setVisibility(View.GONE);
                                                     Log.d("message", "userlogin: 2 success");
-                                                    Intent i=new Intent(getActivity(),HomeActivity.class);
-                                                    startActivity(i);
+                                                    Toast.makeText(getActivity(),"Sign up successful.",Toast.LENGTH_LONG).show();
+                                                    FirebaseAuth.getInstance().signOut();
                                                 }
                                                 else{
                                                     pg.setVisibility(View.GONE);

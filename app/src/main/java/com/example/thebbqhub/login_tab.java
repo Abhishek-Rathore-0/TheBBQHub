@@ -95,6 +95,7 @@ public class login_tab extends Fragment {
                         startActivity(i);
                 }
                 else{
+                    Toast.makeText(getActivity(),"Check your credentials!",Toast.LENGTH_LONG).show();
                     pg.setVisibility(View.GONE);
                     Log.d("message", "userlogin: 5");
                 }
