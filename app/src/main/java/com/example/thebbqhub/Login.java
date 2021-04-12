@@ -5,24 +5,23 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import android.os.Bundle;
-import android.widget.Toast;
+
 
 
 import com.google.android.material.tabs.TabLayout;
+
 
 public class Login extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
     LoginAdapter1 adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_page);
-        Toast.makeText(getApplicationContext(),"CLidkes Failed to registered!",Toast.LENGTH_LONG).show();
 
         adapter = new LoginAdapter1(getSupportFragmentManager());
         adapter.AddFragment(new login_tab(), "Login");
@@ -30,5 +29,6 @@ public class Login extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 }

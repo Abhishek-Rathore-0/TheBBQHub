@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class login_tab extends Fragment {
     private EditText email,pass;
     private Button btn;
     private FirebaseAuth fAuth;
+    private ProgressBar pg;
     float v=0;
 
     @Override
@@ -33,6 +35,7 @@ public class login_tab extends Fragment {
         Login lg=new Login();
         email=(EditText) root.findViewById(R.id.email);
         pass=(EditText)  root.findViewById(R.id.pass);
+        pg=root.findViewById(R.id.progress);
         btn=root.findViewById(R.id.logbtn);
         fAuth=FirebaseAuth.getInstance();
 
@@ -79,24 +82,20 @@ public class login_tab extends Fragment {
             pass.requestFocus();
             return;
         }
+        pg.setVisibility(View.VISIBLE);
         Log.d("message", "userlogin: 2");
         fAuth.signInWithEmailAndPassword(semail,spass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                    if(user.isEmailVerified()) {
                         Log.d("message", "userlogin: 3");
+                        pg.setVisibility(View.GONE);
                         Intent i=new Intent(getActivity(),HomeActivity.class);
                         startActivity(i);
-                    }
-                    else{
-                        Log.d("message", "userlogin: 4");
-                        user.sendEmailVerification();
-                        Toast.makeText(getActivity(),"Check your details",Toast.LENGTH_LONG).show();
-                    }
                 }
                 else{
+                    pg.setVisibility(View.GONE);
                     Log.d("message", "userlogin: 5");
                 }
 

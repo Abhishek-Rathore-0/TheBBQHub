@@ -1,5 +1,6 @@
 package com.example.thebbqhub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ public class signup_tab extends Fragment {
     EditText cpass;
     EditText name;
     Button btn;
+    ProgressBar pg;
     FirebaseAuth fAuth;
 
     float v=0;
@@ -38,6 +41,7 @@ public class signup_tab extends Fragment {
         name=root.findViewById(R.id.newname);
         cpass=root.findViewById(R.id.newpass1);
         btn=root.findViewById(R.id.Signbtn);
+        pg=root.findViewById(R.id.newprogress);
         fAuth= FirebaseAuth.getInstance();
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -76,13 +80,14 @@ public class signup_tab extends Fragment {
                             pass.requestFocus();
                             return;
                         }
-                        if(!password.equals(cpassword)){
+                        if(!password.equals(cpassword)) {
                             cpass.setError("Confirm Password is not same");
                             cpass.requestFocus();
                             return;
                         }
-                 fAuth.createUserWithEmailAndPassword(email1, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                pg.setVisibility(View.VISIBLE);
+
+             fAuth.createUserWithEmailAndPassword(email1, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                            @Override
                            public void onComplete(@NonNull Task<AuthResult> task) {
                                if(task.isSuccessful()){
@@ -93,14 +98,13 @@ public class signup_tab extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
+                                                    pg.setVisibility(View.GONE);
                                                     Log.d("message", "userlogin: 2 success");
-                                                    Toast.makeText(getActivity(),"User has been registered successfully",Toast.LENGTH_LONG).show();
-                                                    name.setText("");
-                                                    pass.setText("");
-                                                    cpass.setText("");
-                                                    email.setText("");
+                                                    Intent i=new Intent(getActivity(),HomeActivity.class);
+                                                    startActivity(i);
                                                 }
                                                 else{
+                                                    pg.setVisibility(View.GONE);
                                                     Toast.makeText(getActivity(),"Failed to registered!",Toast.LENGTH_LONG).show();
                                                     Log.d("message", "userlogin:3 faile ");
                                                 }
@@ -108,6 +112,8 @@ public class signup_tab extends Fragment {
                                         });
 
                                }else {
+                                   pg.setVisibility(View.GONE);
+                                   email.setError("Email has used");
                                    Log.d("message", "userlogin: 4 failes");
                                }
                            }
