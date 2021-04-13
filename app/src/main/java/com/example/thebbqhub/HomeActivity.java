@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
                     if(userp !=null) {
                         String name = userp.name;
                         txt.setText("Welcome, " + name + "!");
-                      //  pg.setVisibility(View.GONE);
+                        pg.setVisibility(View.GONE);
                     }
 
             }

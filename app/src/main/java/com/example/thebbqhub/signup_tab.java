@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -96,7 +97,7 @@ public class signup_tab extends Fragment {
                            public void onComplete(@NonNull Task<AuthResult> task) {
                                if(task.isSuccessful()){
                                     User user= new User(username,email1,mobileno);
-                                    FirebaseDatabase.getInstance().getReference("Users_new")
+                                    FirebaseDatabase.getInstance().getReference("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -104,13 +105,16 @@ public class signup_tab extends Fragment {
                                                 if(task.isSuccessful()){
                                                     pg.setVisibility(View.GONE);
                                                     Log.d("message", "userlogin: 2 success");
-                                                    Toast.makeText(getActivity(),"Sign up successful.",Toast.LENGTH_LONG).show();
-                                                    FirebaseAuth.getInstance().signOut();
-                                                    Fragment fragment = new login_tab();
+                                                    Intent i=new Intent(getActivity(),HomeActivity.class);
+                                                    startActivity(i);
+                                                    // Toast.makeText(getActivity(),"Sign up successful.",Toast.LENGTH_LONG).show();
 
-                                                    FragmentManager fragmentManager = getFragmentManager();
+                                                    // FirebaseAuth.getInstance().signOut();
+                                                    //Fragment fragment = new login_tab();
 
-                                                    fragmentManager.beginTransaction().replace(R.id.view_page, fragment).commit();
+                                                    //FragmentManager fragmentManager = getFragmentManager();
+                                                    //FragmentPagerAdapter
+                                                    //fragmentManager.beginTransaction().replace(R.id.view_page, fragment).commit();
                                                 }
                                                 else{
                                                     pg.setVisibility(View.GONE);

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,44 +56,30 @@ public class ContactFragment extends Fragment {
                       @Override
                       public void onDataChange(@NonNull DataSnapshot snapshot) {
                             User userp = snapshot.getValue(User.class);
-
-
-                                                String name = userp.name;
-                                                String email = userp.email;
-                          feedback  fb = new feedback(rb11, rb22, rb33, comment1, name, email);
-                          FirebaseDatabase.getInstance().getReference("Feedback").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                  .setValue(fb).addOnCompleteListener(new OnCompleteListener<Void>() {
-                              @Override
-                              public void onComplete(@NonNull Task<Void> task) {
-                                  if(task.isSuccessful()){
-                                      Toast.makeText(getActivity(),"Feedback submitted",Toast.LENGTH_LONG).show();
-                                      Fragment fragment = new HomeFragment();
-
-                                      FragmentManager fragmentManager = getFragmentManager();
-
-                                      fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+                          if (userp != null) {
+                              feedback fb = new feedback(rb11, rb22, rb33, comment1, userp.name, userp.email);
+                              FirebaseDatabase.getInstance().getReference("Feedback").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                      .setValue(fb).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                  @Override
+                                  public void onComplete(@NonNull Task<Void> task) {
+                                      if (task.isSuccessful()) {
+                                          Toast.makeText(getActivity(), "Feedback submitted", Toast.LENGTH_LONG).show();
+                                          Fragment fragment = new HomeFragment();
+                                          FragmentManager fragmentManager = getFragmentManager();
+                                          fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+                                      } else {
+                                          Toast.makeText(getActivity(), "Feedback did not get submitted", Toast.LENGTH_LONG).show();
+                                          Log.d("message", "userlogin:3 faile ");
+                                      }
                                   }
-                                  else{
-                                      Toast.makeText(getActivity(),"Feedback did not get submitted",Toast.LENGTH_LONG).show();
-                                      Log.d("message", "userlogin:3 faile ");
-                                  }
-                              }
-                          });
-                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-
-
+                              });
+                          }
+                      }
+                      @Override
+                      public void onCancelled(@NonNull DatabaseError error) {}
                 });
             }
         });
-
-
-
         return root;
-
     }
 }

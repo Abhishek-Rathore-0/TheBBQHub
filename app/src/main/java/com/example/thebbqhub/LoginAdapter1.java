@@ -15,7 +15,8 @@ public class LoginAdapter1 extends FragmentPagerAdapter {
     private final List<Fragment> fragmentName = new ArrayList<>();
     private final List<String> fragmentTitle = new ArrayList<>();
 
-    public LoginAdapter1(FragmentManager fm){
+    public LoginAdapter1(FragmentManager fm)
+    {
         super(fm);
     }
 
@@ -33,9 +34,6 @@ public class LoginAdapter1 extends FragmentPagerAdapter {
     public int getCount() {
         return fragmentTitle.size();
     }
-
-
-
 
     public void AddFragment(Fragment fragment, String title){
         fragmentName.add(fragment);
