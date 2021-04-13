@@ -18,11 +18,12 @@
         app:layout_constraintVertical_bias="0.132"
         app:srcCompat="@drawable/profile" />
 
-    <TextView
+    <EditText
         android:id="@+id/detail"
         android:layout_width="240sp"
         android:layout_height="71dp"
         android:textAlignment="center"
+        android:hint="Enter Name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,24 +33,26 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:layout_constraintVertical_bias="0.046" />
 
-    <TextView
+    <EditText
         android:id="@+id/detaile"
         android:layout_width="240sp"
         android:layout_height="56dp"
         android:textAlignment="center"
         android:textSize="24sp"
+        android:hint="Enter Email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail"
         app:layout_constraintVertical_bias="0.1" />
 
-    <TextView
+    <EditText
         android:id="@+id/detailm"
         android:layout_width="240sp"
         android:layout_height="66dp"
         android:textAlignment="center"
         android:textSize="24sp"
+        android:hint="Enter mobile no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -69,11 +72,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailm"
         app:layout_constraintVertical_bias="0.35" />
+
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
+        android:text="back"
         app:backgroundTint="#F82323"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

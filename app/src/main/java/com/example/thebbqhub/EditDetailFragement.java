@@ -2,11 +2,12 @@ package com.example.thebbqhub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,22 +25,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProfileFragment extends Fragment {
+public class EditDetailFragement extends Fragment {
 
     TextView txt,txte,txtm;
     Button btn1,btne;
-    ProgressBar pg;
+
     private FirebaseUser user;
     private String userId;
     private DatabaseReference reference;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup root=(ViewGroup)inflater.inflate(R.layout.fragment_profile,container,false);
+        ViewGroup root=(ViewGroup)inflater.inflate(R.layout.fragment_edit,container,false);
         txt=root.findViewById(R.id.detail);
         txte=root.findViewById(R.id.detaile);
         txtm=root.findViewById(R.id.detailm);
         btn1=root.findViewById(R.id.btn);
+        btne=root.findViewById(R.id.btnchange);
+
         btne=root.findViewById(R.id.btnchange);
         user= FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
@@ -77,14 +83,58 @@ public class ProfileFragment extends Fragment {
         btne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onchangedata();
+                onupdate();
+            }
+        });
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
             }
         });
         return root;
     }
-    private void onchangedata() {
-        Fragment fragment = new EditDetailFragement();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+
+    private void onupdate() {
+        String email1=txte.getText().toString().trim();
+        String username=txt.getText().toString().trim();
+        String mobileno=txtm.getText().toString().trim();
+        if(username.isEmpty()){
+            txt.setError("Name is required");
+            txt.requestFocus();
+            return;
+        }
+        if(email1.isEmpty()){
+            txte.setError("email no is required");
+            txte.requestFocus();
+            return;
+        }
+        if(mobileno.isEmpty()){
+            txtm.setError("email no is required");
+            txtm.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email1).matches()){
+            txte.setError("Please enter a valid Email");
+            txte.requestFocus();
+            return;
+        }
+        User updatesd=new User(username,email1,mobileno);
+        reference.child(userId).setValue(updatesd).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Log.d("message", "userlogin: 2 success");
+                Fragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+                }
+
+            }
+        });
+
     }
 }
