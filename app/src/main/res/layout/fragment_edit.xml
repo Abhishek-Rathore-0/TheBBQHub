@@ -62,10 +62,10 @@
 
     <Button
         android:id="@+id/btnchange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180sp"
+        android:layout_height="50sp"
         android:text="Change"
-        app:backgroundTint="#F82323"
+        app:backgroundTint="#DDED4E1D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -75,10 +75,10 @@
 
     <Button
         android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180sp"
+        android:layout_height="50sp"
         android:text="back"
-        app:backgroundTint="#F82323"
+        app:backgroundTint="#DDED4E1D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

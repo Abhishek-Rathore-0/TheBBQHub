@@ -1,4 +1,4 @@
-package com.example.thebbqhub;
+    package com.example.thebbqhub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +30,8 @@ public class HomeActivity extends AppCompatActivity {
     ProgressBar pg;
     private FirebaseUser user;
     private DatabaseReference reference;
+    private Toast back;
+    private long backpress;
 
     private String userId;
     @Override
@@ -64,7 +70,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
 
-
         });
     }
 
@@ -96,4 +101,23 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     };
+
+    @Override
+    public void onBackPressed() {
+        if(backpress+2000>System.currentTimeMillis()){
+            back.cancel();
+            Intent i=new Intent(getApplicationContext(),Login.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.putExtra("EXIT",true);
+            startActivity(i);
+            finish();
+            System.exit(0);
+            return;
+        }
+        else {
+            back = Toast.makeText(getApplicationContext(), "Press back again to exit.", Toast.LENGTH_LONG);
+            back.show();
+        }
+        backpress=System.currentTimeMillis();
+    }
 }

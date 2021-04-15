@@ -1,5 +1,6 @@
 package com.example.thebbqhub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -29,13 +30,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class HomeFragment extends Fragment {
-
+Button info,reserve;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root=(ViewGroup)inflater.inflate(R.layout.fragment_homee,container,false);
+        info=(Button) root.findViewById(R.id.info);
+        reserve=(Button) root.findViewById(R.id.book);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(),InfoActivity.class);
+                startActivity(i);
+            }
+        });
 
+        reserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(),ReserveActivity.class);
+                startActivity(i);
+            }
+        });
         return root;
     }
+
 }

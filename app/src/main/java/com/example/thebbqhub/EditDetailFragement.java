@@ -92,7 +92,7 @@ public class EditDetailFragement extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new ProfileFragment();
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).addToBackStack(null).commit();
             }
         });
         return root;
@@ -128,9 +128,8 @@ public class EditDetailFragement extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Log.d("message", "userlogin: 2 success");
-                Fragment fragment = new ProfileFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+                    Intent i=new Intent(getActivity(),HomeActivity.class);
+                    startActivity(i);
                 }
 
             }

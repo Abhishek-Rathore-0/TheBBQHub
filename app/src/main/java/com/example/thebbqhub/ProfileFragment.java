@@ -87,4 +87,10 @@ public class ProfileFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
     }
+
+    public void onBackPressed() {
+        Fragment fragment = new HomeFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+        }
 }

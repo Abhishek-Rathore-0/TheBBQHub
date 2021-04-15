@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -30,5 +31,12 @@ public class Login extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        if(getIntent().getBooleanExtra("EXIT",false))
+            finish();
+
+    }
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
     }
 }

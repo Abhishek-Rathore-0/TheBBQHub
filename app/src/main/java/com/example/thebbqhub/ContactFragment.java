@@ -1,5 +1,6 @@
 package com.example.thebbqhub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,9 +65,8 @@ public class ContactFragment extends Fragment {
                                   public void onComplete(@NonNull Task<Void> task) {
                                       if (task.isSuccessful()) {
                                           Toast.makeText(getActivity(), "Feedback submitted", Toast.LENGTH_LONG).show();
-                                          Fragment fragment = new HomeFragment();
-                                          FragmentManager fragmentManager = getFragmentManager();
-                                          fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
+                                          Intent i=new Intent(getActivity(),HomeActivity.class);
+                                          startActivity(i);
                                       } else {
                                           Toast.makeText(getActivity(), "Feedback did not get submitted", Toast.LENGTH_LONG).show();
                                           Log.d("message", "userlogin:3 faile ");
@@ -84,6 +84,4 @@ public class ContactFragment extends Fragment {
         });
         return root;
     }
-
-
 }

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
-public class SplashActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
+public class SplashActivity extends AppCompatActivity {
+FirebaseAuth fAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,8 +18,14 @@ public class SplashActivity extends AppCompatActivity {
                 new Runnable() {
                     @Override
                     public void run() {
-                        Intent i = new Intent(SplashActivity.this,Login.class);
-                        startActivity(i);
+                        if(fAuth.getInstance().getCurrentUser()!=null){
+                            Intent i = new Intent(SplashActivity.this,HomeActivity.class);
+                            startActivity(i);
+                        }
+                        else {
+                            Intent i = new Intent(SplashActivity.this, Login.class);
+                            startActivity(i);
+                        }
                         finish(); //no returning back
                     }
                 },
