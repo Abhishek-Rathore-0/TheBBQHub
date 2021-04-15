@@ -20,17 +20,20 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="                   Welcome to The BBQHub.\n      A place designed to take the adventure,\nexcitement and joy of BARBECUING to all new \n                                   heights "
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:lineSpacingExtra="10sp"
+        android:padding="20sp"
+        android:text="Welcome to The BBQHub. A place designed to take the adventure,excitement and joy of BARBECUING to all new heights. "
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/book"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView3"
