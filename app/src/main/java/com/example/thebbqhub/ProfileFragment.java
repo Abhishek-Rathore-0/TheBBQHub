@@ -39,6 +39,7 @@ public class ProfileFragment extends Fragment {
         txtm=root.findViewById(R.id.detailm);
         btn1=root.findViewById(R.id.btn);
         btne=root.findViewById(R.id.btnchange);
+        pg=root.findViewById(R.id.progressBar);
         user= FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
         userId=user.getUid();
@@ -51,25 +52,21 @@ public class ProfileFragment extends Fragment {
                 startActivity(i);
             }
         });
-
+        pg.setVisibility(View.VISIBLE);
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
                 User userp=snapshot.getValue(User.class);
-
                 if(userp !=null) {
                     txt.setText("" + userp.name);
                     txte.setText(userp.email);
                     txtm.setText(userp.mobile);
+                    pg.setVisibility(View.GONE);
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                pg.setVisibility(View.GONE);
             }
 
         });
@@ -88,9 +85,4 @@ public class ProfileFragment extends Fragment {
         fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
     }
 
-    public void onBackPressed() {
-        Fragment fragment = new HomeFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
-        }
 }

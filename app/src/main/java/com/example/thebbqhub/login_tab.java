@@ -78,7 +78,7 @@ public class login_tab extends Fragment {
         }
 
         if(spass.isEmpty()){
-            pass.setError("Email is required");
+            pass.setError("Password is required");
             pass.requestFocus();
             return;
         }
@@ -88,8 +88,8 @@ public class login_tab extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
                         Log.d("message", "userlogin: 3");
+                        Toast.makeText(getActivity(),"Login Successful",Toast.LENGTH_LONG).show();
                         pg.setVisibility(View.GONE);
                         Intent i=new Intent(getActivity(),HomeActivity.class);
                         startActivity(i);

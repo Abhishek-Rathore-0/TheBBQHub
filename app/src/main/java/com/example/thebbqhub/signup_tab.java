@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +47,7 @@ public class signup_tab extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d("message", "userlogin:  1 ");
-               String password=pass.getText().toString().trim();
+                String password=pass.getText().toString().trim();
                 String cpassword=cpass.getText().toString().trim();
                 String email1=email.getText().toString().trim();
                 String username=name.getText().toString().trim();
@@ -107,7 +105,7 @@ public class signup_tab extends Fragment {
                                                     Log.d("message", "userlogin: 2 success");
                                                     Intent i=new Intent(getActivity(),HomeActivity.class);
                                                     startActivity(i);
-                                                    // Toast.makeText(getActivity(),"Sign up successful.",Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getActivity(),"Sign up successful.",Toast.LENGTH_LONG).show();
 
                                                     // FirebaseAuth.getInstance().signOut();
                                                     //Fragment fragment = new login_tab();

@@ -53,9 +53,7 @@ public class HomeActivity extends AppCompatActivity {
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                    User userp=snapshot.getValue(User.class);
+                 User userp=snapshot.getValue(User.class);
 
                     if(userp !=null) {
                         String name = userp.name;
@@ -67,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                pg.setVisibility(View.GONE);
             }
 
         });
@@ -77,8 +75,6 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment=null;
-
-
             switch(item.getItemId())
             {
                 case R.id.nav_home:

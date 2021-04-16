@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +30,7 @@ public class EditDetailFragement extends Fragment {
 
     TextView txt,txte,txtm;
     Button btn1,btne;
-
+    ProgressBar pg;
     private FirebaseUser user;
     private String userId;
     private DatabaseReference reference;
@@ -43,6 +44,7 @@ public class EditDetailFragement extends Fragment {
         txtm=root.findViewById(R.id.detailm);
         btn1=root.findViewById(R.id.btn);
         btne=root.findViewById(R.id.btnchange);
+        pg=root.findViewById(R.id.progressBar);
 
         btne=root.findViewById(R.id.btnchange);
         user= FirebaseAuth.getInstance().getCurrentUser();
@@ -52,12 +54,12 @@ public class EditDetailFragement extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i=new Intent(getActivity(),Login.class);
-                startActivity(i);
+                Fragment fragment = new ProfileFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
             }
         });
-
+pg.setVisibility(View.VISIBLE);
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,6 +71,8 @@ public class EditDetailFragement extends Fragment {
                     txt.setText("" + userp.name);
                     txte.setText(userp.email);
                     txtm.setText(userp.mobile);
+
+                    pg.setVisibility(View.GONE);
                 }
 
             }
@@ -123,6 +127,7 @@ public class EditDetailFragement extends Fragment {
             return;
         }
         User updatesd=new User(username,email1,mobileno);
+
         reference.child(userId).setValue(updatesd).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
