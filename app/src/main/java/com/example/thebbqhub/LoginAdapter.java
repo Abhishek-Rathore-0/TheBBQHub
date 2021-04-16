@@ -10,12 +10,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginAdapter1 extends FragmentPagerAdapter {
+public class LoginAdapter extends FragmentPagerAdapter {
 
     private final List<Fragment> fragmentName = new ArrayList<>();
     private final List<String> fragmentTitle = new ArrayList<>();
 
-    public LoginAdapter1(FragmentManager fm)
+    public LoginAdapter(FragmentManager fm)
     {
         super(fm);
     }

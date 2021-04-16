@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -16,7 +15,7 @@ public class Login extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
-    LoginAdapter1 adapter;
+    LoginAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +23,7 @@ public class Login extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_page);
 
-        adapter = new LoginAdapter1(getSupportFragmentManager());
+        adapter = new LoginAdapter(getSupportFragmentManager());
         adapter.AddFragment(new login_tab(), "Login");
         adapter.AddFragment(new signup_tab(), "Sign up");
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

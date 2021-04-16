@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment {
         return root;
     }
     private void onchangedata() {
-        Fragment fragment = new EditDetailFragement();
+        Fragment fragment = new EditDetailFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flFragment, fragment).commit();
     }
